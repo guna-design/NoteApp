@@ -1,0 +1,1 @@
+My Awesome Note-Making App is a simple and efficient tool designed to help you create, organize, and manage your notes effectively. Whether you’re a student, developer, or someone who loves jotting down ideas, this app has got you covered.
