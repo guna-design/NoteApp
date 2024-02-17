@@ -1,41 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { NotesTaken } from "../Context/Notedata";
+import { NoteData } from "../Context/Notedata";
+import { Formik } from "formik";
 
 function Edit() {
   const params = useParams();
-  const { data, setData } = useContext(NotesTaken);
+  const { data, setData } = useContext(NoteData);
 
   const [initialValues, setInitialValues] = useState({
     title: "",
     note: "",
   });
+  const Navigate = useNavigate();
 
   const getData = (index) => {
-    let newValues = { ...initialValues };
-    newValues.title = data[index].title;
-    newValues.note = data[index].note;
-    setInitialValues(newValues);
+    let newData = { ...initialValues };
+    newData.title = data[index].title;
+    newData.note = data[index].note;
+    setInitialValues(newData);
   };
 
   useEffect(() => {
     if (Number(params.id) < data.length) {
       getData(Number(params.id));
     } else {
-      navigate("/home");
+      Navigate("/dasboard");
     }
   }, []);
   return (
     <Formik
-      initialValues={{
-        title: "",
-        note: "",
-      }}
-      onSubmit={(values, { resetForm }) => {
+      initialValues={initialValues}
+      enableReinitialize={true}
+      onSubmit={(values) => {
         let newArray = [...data];
-        newArray.push(values);
+        newArray.splice(Number(params.id), 1, values);
         setData(newArray);
-        resetForm();
+        Navigate("/dashboard");
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (
@@ -55,7 +55,7 @@ function Edit() {
             <div>
               <input
                 type="text"
-                className="placeholder:text-2xl py-10 w-72 outline-none bg-transparent"
+                className="placeholder: text-xl text- py-10 w-72 outline-none bg-transparent"
                 name="title"
                 value={values.title}
                 onChange={handleChange}

@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 
-import { NotesTaken } from "../Context/Notedata";
-
+import { NoteData } from "../Context/Notedata";
+import { useNavigate } from "react-router";
 
 function Notes() {
-  let { data, setData } = useContext(NotesTaken);
+  let { data, setData } = useContext(NoteData);
 
   let handleDelete = (index) => {
     let newArray = [...data];
     newArray.splice(index, 1);
     setData(newArray);
   };
-
+  let Navigate = useNavigate();
   return (
     <>
       <div className="p-3 md:pl-72 lg:pl-72 ">
@@ -30,15 +30,17 @@ function Notes() {
                 <div key={i}>
                   <div class=" w-72 h-52 rounded-xl shadow-xl hover:translate-y-2 transition-all bg-white dark:bg-gray-800">
                     <div className="p-6 text-lg   flex ">
-                      <div className="overflow-y-scroll scrollbar-hide  w-44">{e.title}</div>
+                      <div className="overflow-y-scroll scrollbar-hide  w-44">
+                        {e.title}
+                      </div>
                       <i
-                        className="fa fa-edit pl-20 pointer   "
+                        className="fa fa-edit pl-20 hover:translate-y-1 transition-all pointer   "
                         onClick={() => {
-                          navigate(`/edit/${i}`);
+                          Navigate(`/edit/${i}`);
                         }}
                       ></i>
                       <i
-                        className="fa fa-trash pl-5  "
+                        className="fa fa-trash hover:translate-y-1 transition-all pl-5  "
                         onClick={() => handleDelete(i)}
                       ></i>
                     </div>

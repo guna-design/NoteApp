@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { NotesTaken } from "../Context/Notedata";
+import { NoteData } from "../Context/Notedata";
 import { Formik } from "formik";
 
 function AddNotes() {
-  let { data, setData } = useContext(NotesTaken);
+  let { data, setData } = useContext(NoteData);
 
   return (
     <Formik
@@ -35,7 +35,7 @@ function AddNotes() {
             <div>
               <input
                 type="text"
-                className="placeholder:text-2xl py-10   outline-none bg-transparent"
+                className="placeholder:text-xl text-2xl py-10   outline-none bg-transparent"
                 name="title"
                 value={values.title}
                 onChange={handleChange}
@@ -46,7 +46,7 @@ function AddNotes() {
             <div>
               <textarea
                 type="text"
-                className="placeholder:text-xl  w-full  outline-none bg-transparent  resize-none "
+                className="placeholder:text-xl text-xl   w-full  outline-none bg-transparent  resize-none "
                 name="note"
                 value={values.note}
                 onChange={handleChange}

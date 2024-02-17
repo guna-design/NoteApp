@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const NotesTaken = React.createContext();
+export const NoteData = React.createContext();
 
 function NotesContext({ children }) {
   const [data, setData] = useState([
@@ -12,9 +12,9 @@ function NotesContext({ children }) {
   ]);
   const [editIndex, setEditIndex] = useState(null);
   return (
-    <NotesTaken.Provider value={{ data, setData, editIndex, setEditIndex }}>
+    <NoteData.Provider value={{ data, setData, editIndex, setEditIndex }}>
       {children}
-    </NotesTaken.Provider>
+    </NoteData.Provider>
   );
 }
 
