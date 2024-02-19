@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import { NoteData } from "../Context/Notedata";
 import { useNavigate } from "react-router";
+import TimeAgo from "timeago-react";
 
 function Notes() {
   let { data, setData } = useContext(NoteData);
@@ -28,7 +29,7 @@ function Notes() {
             <>
               <div class="p-4 rounded-lg ">
                 <div key={i}>
-                  <div class=" w-72 h-52 rounded-xl shadow-xl hover:translate-y-2 transition-all bg-white dark:bg-gray-800">
+                  <div class=" w-72 h-60 rounded-xl shadow-xl hover:translate-y-2 transition-all bg-white dark:bg-gray-800">
                     <div className="p-6 text-lg   flex ">
                       <div className="overflow-y-scroll scrollbar-hide  w-44">
                         {e.title}
@@ -46,6 +47,9 @@ function Notes() {
                     </div>
 
                     <div class="p-4  overflow-auto  h-32 ...">{e.note}</div>
+                    <span className="float-end p-2 font-serif ">
+                      <TimeAgo datetime={new Date()} locale="en_US.ts" />
+                    </span>
                   </div>
                 </div>
               </div>
